@@ -21,6 +21,18 @@ else
 fi
 echo "*******************"
 
+echo "Proxy information for git (blank if nothing): "
+read proxy_val
+echo "You entered $proxy_val"
+
+if [[ $proxy_val == "" ]]; then
+  echo "You have chosen: no proxy"
+else
+  git config --global http.proxy=$proxy_val
+fi
+
+echo "*******************"
+
 # get the code
 git clone https://github.com/ChanderG/butler.git
 
