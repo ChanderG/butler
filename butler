@@ -1,0 +1,25 @@
+#! /usr/bin/python
+
+from optparse import OptionParser
+import os.path
+
+# Main task runner
+# for now a dumb wrapper
+# Look at tasks in the tasks/ folder
+
+task_folder = 'tasks'
+
+def main():
+    parser = OptionParser()
+    (options, args) = parser.parse_args()
+
+    if args == []:
+        print "Listing all tasks. WIP"
+    else:
+        print "Running " + " ".join(args)
+        task_path = reduce(lambda x,y: os.path.join(x, y), args, task_folder)
+        print task_path
+
+if __name__ == "__main__":
+    main()
+
