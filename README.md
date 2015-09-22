@@ -9,5 +9,5 @@ A complete setup personal assistant. For now, customized for my needs. Will look
 `git clone` this repository.
 
 ####Setup install
-Just get the `bootstrap.sh` script and run it.
+Just get the `bootstrap.sh` script and run it. Installs git, python and gets this repository.
 

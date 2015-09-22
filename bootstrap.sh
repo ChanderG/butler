@@ -10,6 +10,8 @@ command_exists () {
 
 # for now, a "developer perspective" only
 # see if git is installed
+
+echo "*******************"
 if command_exists git ; then
   echo "git available"
 else
@@ -17,8 +19,24 @@ else
   echo "Installing git..."
   sudo apt-get install -y git
 fi
+echo "*******************"
 
 # get the code
 git clone https://github.com/ChanderG/butler.git
 
 echo "butler installed"
+echo "*******************"
+
+# see if git is installed
+if command_exists python ; then
+  echo "Python available"
+else
+  echo "Python not installed."
+  echo "Installing python..."
+  sudo apt-get install -y python
+fi
+
+echo "*******************"
+
+echo "butler ready for use"
+echo "*******************"
