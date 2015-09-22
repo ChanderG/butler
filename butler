@@ -13,12 +13,22 @@ def main():
     parser = OptionParser()
     (options, args) = parser.parse_args()
 
+    # if no params - list all available tasks
     if args == []:
         print "Listing all tasks. WIP"
+        return
+
+    print "Running " + " ".join(args)
+    task_path = reduce(lambda x,y: os.path.join(x, y), args, task_folder)
+    # check validity of task
+    if os.path.isfile(task_path):
+        print "Task found."
     else:
-        print "Running " + " ".join(args)
-        task_path = reduce(lambda x,y: os.path.join(x, y), args, task_folder)
-        print task_path
+        print "Task unavailable. Have a nice day."
+        return
+
+    print "Procceding to deploy script..."
+
 
 if __name__ == "__main__":
     main()
