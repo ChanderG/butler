@@ -2,6 +2,7 @@
 
 from optparse import OptionParser
 import os.path
+import subprocess
 
 # Main task runner
 # for now a dumb wrapper
@@ -28,7 +29,9 @@ def main():
         return
 
     print "Procceding to deploy script..."
-
+    task_path = "./" + task_path 
+    subprocess.call(task_path)
+    print "Task completed. Have a nice day."
 
 if __name__ == "__main__":
     main()
