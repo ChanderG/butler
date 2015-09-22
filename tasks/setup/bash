@@ -13,5 +13,28 @@ else
   mkdir $WORKSPACE
 fi
 
-# setting up bash aliases
-echo "WIP"
+# SETTING UP BASH ALIASES
+echo "Setting up bash aliases"
+# get corresponding module 
+# here, my own dotfiles repo
+MODULE="dotfiles"
+URL="https://github.com/ChanderG/dotfiles"
+
+if [ -d $WORKSPACE/$MODULE ]; then
+  echo "Module already loaded.Pulling the latest version..."
+  cd $WORKSPACE/$MODULE 
+  git pull
+  cd - > /dev/null
+else
+  echo "Obtaining relevant module..."
+  git clone $URL $WORKSPACE/$MODULE
+  echo "Module obtained"
+fi
+
+if [ -f ~/.bash_aliases ]; then
+  echo "~/.bash_aliases already exists."
+  echo "Cannot proceed with setup."
+else
+  ln -s `pwd`/$WORKSPACE/$MODULE/.bash_aliases ~/.bash_aliases
+  source ~/.bashrc
+fi
