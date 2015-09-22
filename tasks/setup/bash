@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Setup bash
+
+# setup work dir
+WORKSPACE="workspace"
+echo "Setting up workspace"
+if [ -d $WORKSPACE ];
+then
+  echo "Using existing folder: $WORKSPACE"
+else
+  echo "Creating workspace folder: $WORKSPACE"
+  mkdir $WORKSPACE
+fi
+
+# setting up bash aliases
+echo "WIP"
