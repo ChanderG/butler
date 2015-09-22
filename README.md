@@ -1,7 +1,7 @@
 #butler
 
 ###What?
-A complete setup personal assistant. For now, customized for my needs. Will look to generalize the setup.
+A complete setup personal assistant. For now, customized for my needs. Will look to generalize the setup. Setup for Ubuntu/Debian.
 
 ###Usuage
 
