@@ -36,5 +36,5 @@ if [ -f ~/.bash_aliases ]; then
   echo "Cannot proceed with setup."
 else
   ln -s `pwd`/$WORKSPACE/$MODULE/.bash_aliases ~/.bash_aliases
-  source ~/.bashrc
+  echo "Run source ~/.bashrc to get the aliases activated."
 fi
