@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Setup bash
+# Setup tmux
 
 # setup work dir
 WORKSPACE="workspace"
@@ -13,8 +13,24 @@ else
   mkdir $WORKSPACE
 fi
 
-# SETTING UP BASH ALIASES
-echo "Setting up bash aliases"
+# SETTING UP TMUX
+
+# helpers
+command_exists () {
+    command -v "$1" > /dev/null 2>&1
+}
+
+# see if tmux is installed
+
+echo "*******************"
+if command_exists tmux ; then
+  echo "tmux available"
+else
+  echo "tmux not installed."
+  echo "Installing tmux..."
+  sudo apt-get install -y tmux
+fi
+
 # get corresponding module 
 # here, my own dotfiles repo
 MODULE="dotfiles"
@@ -31,10 +47,10 @@ else
   echo "Module obtained"
 fi
 
-if [ -f ~/.bash_aliases ]; then
-  echo "~/.bash_aliases already exists."
+if [ -f ~/.tmux.conf ]; then
+  echo "~/.tmux.conf already exists."
   echo "Cannot proceed with setup."
 else
-  ln -s `pwd`/$WORKSPACE/$MODULE/.bash_aliases ~/.bash_aliases
-  echo "Run source ~/.bashrc to get the aliases activated."
+  ln -s `pwd`/$WORKSPACE/$MODULE/.tmux.conf ~/.tmux.conf
+  echo "Setup tmux conf. Close all tmux sessions (if any) for changes to be reflected."
 fi

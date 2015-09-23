@@ -28,7 +28,7 @@ echo "You entered $proxy_val"
 if [[ $proxy_val == "" ]]; then
   echo "You have chosen: no proxy"
 else
-  git config --global http.proxy=$proxy_val
+  git config --global http.proxy $proxy_val
 fi
 
 echo "*******************"
