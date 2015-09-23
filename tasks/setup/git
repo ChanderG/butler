@@ -1,0 +1,48 @@
+#! /bin/bash
+
+# Setup git 
+
+# check and setup workspace
+# if needed
+
+# setup user, email
+echo "Enter user name (blank for ChanderG): "
+read user_name
+echo "Enter user email (blank for chandergovind@gmail.com): "
+read user_email
+
+if [[ $user_name = "" ]]; then
+  git config --global user.name ChanderG
+else
+  git config --global user.name $user_name
+fi
+
+if [[ $user_email = "" ]]; then
+  git config --global user.email chandergovind@gmail.com
+else
+  git config --global user.email $user_email
+fi
+
+# setup proxy
+echo "Proxy information for git (blank if nothing): "
+read proxy_val
+echo "You entered $proxy_val"
+
+if [[ $proxy_val == "" ]]; then
+  echo "You have chosen: no proxy"
+else
+  git config --global http.proxy $proxy_val
+fi
+
+# setup aliases
+echo "Set up aliases for git? (y/n): "
+read alias_choice
+
+if [[ $alias_choice = "y" ]]; then
+  echo "Alias status -> s "
+  git config --global alias.s status 
+  echo "Alias branch -> b "
+  git config --global alias.b branch 
+else
+  echo "Not setting alias now."
+fi
