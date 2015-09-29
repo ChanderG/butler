@@ -24,7 +24,7 @@ else
 fi
 
 # setup proxy
-echo "Proxy information for git (blank if nothing): "
+echo "Proxy information for git (blank if no change): "
 read proxy_val
 echo "You entered $proxy_val"
 
@@ -32,6 +32,16 @@ if [[ $proxy_val == "" ]]; then
   echo "You have chosen: no proxy"
 else
   git config --global http.proxy $proxy_val
+fi
+
+echo "Set default editor for git as vim? (y/n)"
+read editor_choice
+
+if [[ $editor_choice = "y" ]]; then
+  echo "Setting editor..."
+  git config --global core.editor vim
+else
+  echo "Not setting anything."
 fi
 
 # setup aliases
