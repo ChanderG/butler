@@ -1,0 +1,20 @@
+#! /bin/bash
+
+# setup proxy
+
+# simple export for bash
+echo "Enter proxy ip and port: (http://<proxyip>:<port>/) "
+read proxy_info
+
+echo "Setting up proxy..."
+
+echo "" >> ~/.bashrc
+echo "" >> ~/.bashrc
+echo "Proxy setup: " >> ~/.bashrc
+echo "export http_proxy=\"$proxy_info\"" >> ~/.bashrc
+echo "export https_proxy=\"$proxy_info\"" >> ~/.bashrc
+echo "export HTTP_PROXY=\"$proxy_info\"" >> ~/.bashrc
+echo "export HTTPS_PROXY=\"$proxy_info\"" >> ~/.bashrc
+echo "" >> ~/.bashrc
+
+echo "Done. Source ~/.bashrc for changes to take place"
