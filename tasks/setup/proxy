@@ -10,7 +10,7 @@ echo "Setting up proxy..."
 
 echo "" >> ~/.bashrc
 echo "" >> ~/.bashrc
-echo "Proxy setup: " >> ~/.bashrc
+echo "# Proxy setup: " >> ~/.bashrc
 echo "export http_proxy=\"$proxy_info\"" >> ~/.bashrc
 echo "export https_proxy=\"$proxy_info\"" >> ~/.bashrc
 echo "export HTTP_PROXY=\"$proxy_info\"" >> ~/.bashrc
