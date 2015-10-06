@@ -1,0 +1,21 @@
+#! /bin/bash
+
+# Switch on proxy
+
+# CONFIG directory
+# Use 'proxy.cfg' to get the proxy information
+CONFDIR="config"
+CONFFILE="proxy.cfg"
+
+CONFPATH=$CONFDIR/$CONFFILE
+
+if [[ -f $CONFPATH ]]; then
+  echo "Required config file $CONFFILE found..."
+else
+  echo "Config file $CONFFILE not found in $CONFDIR. Aborting."
+  exit
+fi
+
+# git
+echo "Setting up git proxy..."
+git config --global http.proxy `cat $CONFPATH`
