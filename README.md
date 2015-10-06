@@ -32,3 +32,12 @@ Right now tasks are not indexed or listed. The style of usuage as of now is as f
 ```
 
 will run the `taskname` script in the folder /tasks/setup.
+
+
+###Folder structure
+
+Right now:
+
+`tasks` folder consists all scripts
+`workspace` folder is created to store all downloaded files etc.
+`config` folder is used to store various config information.
