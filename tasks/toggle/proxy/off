@@ -1,0 +1,7 @@
+#! /bin/bash
+
+# Switch off proxy info
+
+# git
+echo "Removing git proxy..."
+git config --global http.proxy ""
