@@ -39,5 +39,7 @@ will run the `taskname` script in the folder /tasks/setup.
 Right now:
 
 `tasks` folder consists all scripts
+
 `workspace` folder is created to store all downloaded files etc.
+
 `config` folder is used to store various config information.
