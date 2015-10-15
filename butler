@@ -3,6 +3,7 @@
 from optparse import OptionParser
 import os.path
 import subprocess
+import os
 
 # Main task runner
 # for now a dumb wrapper
@@ -10,9 +11,38 @@ import subprocess
 
 task_folder = 'tasks'
 
+# the parameter dictionary
+settings = {}
+
+def load_dotfile():
+    """ Read config from dotfile ".butler".
+
+    Load required parameters.
+    """
+
+    username = os.getenv("USER")
+
+    f = open("/home/{0}/.butler".format(username)).read()
+    lines = f.split("\n")
+
+    lines = filter(lambda x: x != "", lines)
+    lines = filter(lambda x: x.strip(" ")[0] != '#', lines)
+
+    # there should be key value pairs
+    settings_str = map(lambda x: x.strip(" ").split(" "), lines)
+    global settings
+    for s in settings_str:
+        settings[s[0]]= s[1]
+        
 def main():
     parser = OptionParser()
     (options, args) = parser.parse_args()
+
+    # load user specific config file
+    load_dotfile()
+
+    # go to the butler directory
+    os.chdir(settings['BUTLER_DIR'])
 
     # if no params - list all available tasks
     if args == []:

@@ -17,3 +17,10 @@ fi
 if [ ! -L ~/bin/butler ] ; then
   ln -s `pwd`/butler ~/bin/butler
 fi
+
+# create the config file and store path to current folder
+BUTLER_CONFIG_FILE="/home/$USER/.butler"
+rm $BUTLER_CONFIG_FILE
+touch $BUTLER_CONFIG_FILE
+echo "# Config file for using butler from anywhere on the system" >> $BUTLER_CONFIG_FILE
+echo "BUTLER_DIR `pwd`" >> $BUTLER_CONFIG_FILE
