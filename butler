@@ -34,6 +34,18 @@ def load_dotfile():
     for s in settings_str:
         settings[s[0]]= s[1]
         
+
+def printTaskList():
+    """
+    Print list of available tasks.
+    """
+    path_prefix = os.path.join(settings['BUTLER_DIR'], task_folder)
+    for root, dirs, files in os.walk(path_prefix):
+        if dirs == []:
+            for f in files:
+                print ' '.join(os.path.join(root, f)[len(path_prefix):].split('/'))
+            print ""
+
 def main():
     parser = OptionParser()
     (options, args) = parser.parse_args()
@@ -46,7 +58,8 @@ def main():
 
     # if no params - list all available tasks
     if args == []:
-        print "Listing all tasks. WIP"
+        print "Listing all available tasks: "
+        printTaskList()
         return
 
     print "Running " + " ".join(args)

@@ -10,12 +10,14 @@ Tasks are simple scripts written in any language and placed in the `tasks/` fold
 
 ###Installation
 
-####With git
+#### Get the repository
+
+##### With git
 `git clone` this repository.
 
-#### or
+##### or
 
-####Full bootstrap
+##### Full bootstrap
 Just get the `bootstrap.sh` script and run it. Installs git, python and gets this repository.
 
 To get the script directly:
@@ -24,15 +26,27 @@ To get the script directly:
 wget https://raw.githubusercontent.com/ChanderG/butler/master/bootstrap.sh
 ```
 
-###Usuage
-Right now tasks are not indexed or listed. The style of usuage as of now is as follows:
+#### Install
+Run the `setup.sh` script. Symlinks and adds the main code to the path variable. Once you do this, you can use butler from anywhere in the system by calling:
 
 ```
-./butler setup taskname
+butler
+```
+
+###Usuage
+The style of usuage as of now is as follows:
+
+```
+butler setup taskname
 ```
 
 will run the `taskname` script in the folder /tasks/setup.
 
+Running without any arguments:
+```
+butler
+```
+would print all available tasks.
 
 ###Folder structure
 
