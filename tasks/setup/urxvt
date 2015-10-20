@@ -1,0 +1,56 @@
+#!/bin/bash
+
+# Setup urxvt
+
+# setup work dir
+WORKSPACE="workspace"
+echo "Setting up workspace"
+if [ -d $WORKSPACE ];
+then
+  echo "Using existing folder: $WORKSPACE"
+else
+  echo "Creating workspace folder: $WORKSPACE"
+  mkdir $WORKSPACE
+fi
+
+# helpers
+command_exists () {
+    command -v "$1" > /dev/null 2>&1
+}
+
+# see if urxvt is installed
+
+echo "*******************"
+if command_exists urxvt ; then
+  echo "urxvt available"
+else
+  echo "urxvt not installed."
+  echo "Installing urxvt..."
+  sudo apt-get install -y rxvt-unicode
+fi
+
+# get corresponding module 
+# here, my own dotfiles repo
+MODULE="dotfiles"
+URL="https://github.com/ChanderG/dotfiles"
+
+if [ -d $WORKSPACE/$MODULE ]; then
+  echo "Module already loaded.Pulling the latest version..."
+  cd $WORKSPACE/$MODULE 
+  git pull
+  cd - > /dev/null
+else
+  echo "Obtaining relevant module..."
+  git clone $URL $WORKSPACE/$MODULE
+  echo "Module obtained"
+fi
+
+if [ -f ~/.Xresources ]; then
+  echo "~/.Xresources already exists."
+  echo "Cannot proceed with setup."
+else
+  ln -s `pwd`/$WORKSPACE/$MODULE/.Xresources ~/.Xresources
+  echo "Setup Xresources file." 
+  echo "Bringing in the changes to the running X instance: "
+  xrdb -merge ~/.Xresources
+fi
