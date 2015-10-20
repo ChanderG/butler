@@ -1,0 +1,70 @@
+#! /bin/bash
+
+# setup dwm
+
+# helpers
+command_exists () {
+    command -v "$1" > /dev/null 2>&1
+}
+
+# setup work dir
+WORKSPACE="workspace"
+echo "Setting up workspace"
+if [ -d $WORKSPACE ];
+then
+  echo "Using existing folder: $WORKSPACE"
+else
+  echo "Creating workspace folder: $WORKSPACE"
+  mkdir $WORKSPACE
+fi
+
+# install the required version of dwm directly, to obtain all dependencies
+echo "Installing vanilla dwm: "
+sudo apt-get install -y dwm
+
+# get corresponding module 
+# here, my own dwm repo
+MODULE="my-dwm"
+URL="https://github.com/ChanderG/my-dwm"
+
+if [ -d $WORKSPACE/$MODULE ]; then
+  echo "Module already loaded.Pulling the latest version..."
+  cd $WORKSPACE/$MODULE 
+  git pull
+  cd - > /dev/null
+else
+  echo "Obtaining relevant module..."
+  git clone $URL $WORKSPACE/$MODULE
+  echo "Module obtained"
+fi
+
+echo "Installing the customized version..."
+
+echo "Installing helpers first: "
+
+echo "*******************"
+if command_exists make ; then
+  echo "make available"
+else
+  echo "make not installed."
+  echo "Installing make..."
+  sudo apt-get install -y make
+fi
+echo "*******************"
+
+if command_exists gcc; then
+  echo "gcc available"
+else
+  echo "gcc not installed."
+  echo "Installing gcc..."
+  sudo apt-get install -y gcc
+fi
+echo "*******************"
+
+echo "Installing development headers required: "
+sudo apt-get install -y libx11-dev libxinerama-dev
+
+cd $WORKSPACE/$MODULE
+sudo make clean install
+
+echo "Customized version of dwm installed."
